@@ -7,13 +7,13 @@ Requirements:
 How to Use:
 - Run Script
 
-- Write the name of manga you want to read
+- Type the name of the manga you want to read
 
 - Select the manga using its index number from the query results
 
 - Chapter List will appear
 
-- Select the chapter you want to read by typing the index number of the chapter (use chapter title to figure out which chapter)
+- Select the chapter you want to read by typing the index number of the chapter (use chapter title to figure out which chapter you are selecting)
 
 - You'll be redirected to manganelo website to the specified chapter
 
