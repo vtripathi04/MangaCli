@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 import requests
 import webbrowser
+import rich.console import console
 
 ms = input("\nSearch for Manga: \n")
 msl = ms.split()
