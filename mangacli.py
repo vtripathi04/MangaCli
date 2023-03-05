@@ -1,9 +1,22 @@
 from bs4 import BeautifulSoup
 import requests
 import webbrowser
-from rich.console import console
+from termcolor import colored
+from pyfiglet import Figlet
+import colorama
 
-ms = input("\nSearch for Manga: \n")
+
+colorama.init()
+
+print(colored("*"*75, 'green'))
+
+f = Figlet(font="isometric2")
+print(colored(f.renderText("MangaCli"),'red', attrs=['bold','underline']))
+
+print(colored("*"*75, 'green'))
+
+
+ms = input(colored("\nSearch for Manga: \n", 'red', attrs=['bold','underline']))
 msl = ms.split()
 source = requests.get("https://m.manganelo.com/search/story/"+ '_'.join(msl)).text
 
@@ -12,29 +25,32 @@ soup = BeautifulSoup(source, 'lxml')
 manga_dict = {}
 chap_dict = {}
 
-print("\n\nSearch Results:\n ")
+print(colored("\n\nSearch Results:\n ", 'green', attrs=['underline']))
 
 # fetches the manga titles and saves them in a dictionary
 c = 1
 for a in soup.find_all('a', class_ = 'item-img'):
 
     m_name = a['title']
-    print(str(c)+ ") " + m_name)
-    print()
+    titletext = str(c)+ ") " + m_name
+    print(colored(titletext, 'red'))
+    # print()
 
     manga_dict[c] = m_name
     c+= 1
 
+
 # searches for the manga in the dictionary : corresponding to the number selected
 
-ask = int(input('\nSelect the number corresponding to the manga you want to read: \n'))
+ask = int(input('\nSelect the number corresponding to the manga you want to read:\n'))
 
 for k in range(1,len(manga_dict)+1):
     if k == ask:
         manga_select = manga_dict[k]
     
-print("\nSelected Manga: ",manga_select)
+print(colored("\nSelected Manga: " + manga_select, 'green', 'on_red', attrs=['bold']))
 
+print(colored("-"*75, 'green'))
 
 # sends request to manga page and fetches the list of chapters
 
@@ -47,13 +63,13 @@ for a in soup.find_all('a', class_ = 'item-img'):
 source2 = requests.get(manga_page).text
 soup2 = BeautifulSoup(source2, 'lxml')
 
-print("\nChapter List:\n ")
+print(colored("\nChapter List:\n ", 'green', attrs=['bold', 'underline']))
 
 c = 1
 for a in soup2.find_all('a', class_ = 'chapter-name text-nowrap'):
     chap_name = a['title']
-    print(str(c) + ') ' + chap_name)
-    print()
+    chaptext = (str(c) + ') ' + chap_name)
+    print(colored(chaptext, 'blue'))
 
     chap_dict[c] = chap_name
     c += 1
@@ -71,7 +87,7 @@ for a in soup2.find_all('a', class_ = 'chapter-name text-nowrap'):
         chap_url = a['href']
 
 
-print('\nYou selected the chapter: ', chap_select)
+print(colored('\nYou selected the chapter: '+ chap_select, 'green', 'on_red', attrs=['bold']))
 
 print("\nNow redirecting to the chapter...")
 
