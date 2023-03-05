@@ -48,7 +48,7 @@ for k in range(1,len(manga_dict)+1):
     if k == ask:
         manga_select = manga_dict[k]
     
-print(colored("\nSelected Manga: " + manga_select, 'green', 'on_red', attrs=['bold']))
+print(colored("\nSelected Manga: " + manga_select, 'white', 'on_red', attrs=['bold']))
 
 print(colored("-"*75, 'green'))
 
@@ -87,7 +87,7 @@ for a in soup2.find_all('a', class_ = 'chapter-name text-nowrap'):
         chap_url = a['href']
 
 
-print(colored('\nYou selected the chapter: '+ chap_select, 'green', 'on_red', attrs=['bold']))
+print(colored('\nYou selected the chapter: '+ chap_select, 'white', 'on_red', attrs=['bold']))
 
 print("\nNow redirecting to the chapter...")
 
